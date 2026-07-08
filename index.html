@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khắc Kiệt Graduation Ceremony - Lễ Tốt Nghiệp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- SECTION 1: HERO WITH CURTAIN EFFECT -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text-wrapper">
+                <p class="hero-subtitle">Kính mời mọi người đến dự</p>
+              <h1 class="hero-title">Khắc Kiệt<br>Graduation ceremony</h1>
+                <p class="hero-date">Thứ Sáu, ngày 24 tháng 7, 2026</p>
+                <p class="hero-location">Hội trường B</p>
+                <button class="hero-btn">LƯU NGAY</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- SECTION 2: COUNTDOWN -->
+    <section class="countdown-section" id="countdown-section">
+        <h2 class="section-title">Đến ngước</h2>
+        <p class="countdown-subtitle">Đến khi buổi lễ bắt đầu</p>
+        <div class="countdown-container">
+            <div class="countdown-box">
+                <div class="countdown-number" id="days">16</div>
+                <div class="countdown-label">NGÀY</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="hours">06</div>
+                <div class="countdown-label">GIỜ</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="minutes">39</div>
+                <div class="countdown-label">PHÚT</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="seconds">55</div>
+                <div class="countdown-label">GIÂY</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: EVENT DETAILS -->
+    <section class="event-details" id="event-details">
+        <h2 class="section-title">Chi tiết Lễ kỷ niệm</h2>
+        <p class="event-subtitle">Một điều bạn cần biết về lễ kỷ niệm</p>
+        
+        <div class="event-container">
+            <div class="event-image-wrapper">
+                <img src="hcmue.webp" alt="Event Venue" class="event-image">
+            </div>
+            
+            <div class="event-info">
+                <h3 class="event-venue-title">Vị trí</h3>
+                <p class="event-venue-name">Hội trường B</p>
+                
+                <div class="event-detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>280 Ân Dương Vương, Phường 4, Quận 5, TP.HCM</p>
+                </div>
+                
+                <div class="event-detail-item">
+                    <i class="fas fa-calendar"></i>
+                    <p>Thứ Sáu, ngày 24 tháng 7, 2026</p>
+                </div>
+                
+                <div class="event-detail-item">
+                    <i class="fas fa-clock"></i>
+                    <p>~11:00 AM</p>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-primary">
+                        <i class="fas fa-map-pin"></i> Cách đến đó
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-calendar-plus"></i> Thêm vào Lịch
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: RSVP SURVEY -->
+    <section class="rsvp-section" id="rsvp-section">
+        <h2 class="section-title">Xác Nhận Tham Gia</h2>
+        <p class="rsvp-subtitle"> đến góp vui xin tấm hình nha!!</p>
+        
+        <form class="rsvp-form" id="rsvpForm" action="https://formspree.io/f/xyzqwert" method="POST">
+            <div class="form-group">
+                <label for="name">Họ và Tên *</label>
+                <input type="text" id="name" name="name" required placeholder="Cho cái biệt danh đi">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="Nhập địa chỉ email">
+            </div>
+            
+            <div class="form-group">
+                <label>Bạn có  nhận tham gia không? *</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="attendance-yes" name="attendance" value="Có tham gia" required>
+                        <label for="attendance-yes">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Yah sure chắc chắn là như vậy rồi</span>
+                        </label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="attendance-no" name="attendance" value="Không tham gia" required>
+                        <label for="attendance-no">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Không, không thể không tham gia</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Nhắn gửi yêu thương</label>
+                <textarea id="message" name="message" placeholder="Có nói gì khum?" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> Gửi Xác Nhận
+            </button>
+            
+            <p class="form-message" id="formMessage"></p>
+        </form>
+    </section>
+
+    <!-- SECTION 5: FOOTER -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <p class="footer-heading">LÊN ĐẦU TRANG</p>
+            <h2 class="footer-title">Khắc Kiệt Graduation ceremony</h2>
+            <p class="footer-date">ngày 24 tháng 7, 2026</p>
+            <p class="footer-message"></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
