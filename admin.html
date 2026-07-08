@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - RSVP Responses - Khắc Kiệt Graduation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #B89742;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #F4E0B9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: rgba(10, 29, 55, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #B89742;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            color: #F4E0B9;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #B89742;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #B89742;
+            color: #0A1D37;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #F4E0B9;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .table-wrapper {
+            background: rgba(10, 29, 55, 0.3);
+            border: 2px solid rgba(184, 151, 66, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: rgba(184, 151, 66, 0.1);
+            border-bottom: 2px solid #B89742;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #F4E0B9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(184, 151, 66, 0.2);
+        }
+
+        tbody tr:hover {
+            background: rgba(184, 151, 66, 0.05);
+        }
+
+        .status-yes {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .status-no {
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 18px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #B89742;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #F4E0B9;
+        }
+
+        .export-btn {
+            background: #4ade80;
+        }
+
+        .export-btn:hover {
+            background: #22c55e;
+        }
+
+        .delete-btn {
+            background: #f87171;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .delete-btn:hover {
+            background: #ef4444;
+        }
+
+        .clear-btn {
+            background: #ef4444;
+        }
+
+        .clear-btn:hover {
+            background: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .table-wrapper {
+                padding: 10px;
+            }
+
+            th, td {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Quay lại trang chính</a>
+
+        <div class="header">
+            <h1>📊 Quản Lý RSVP</h1>
+            <div style="color: #888; font-size: 13px;">Khắc Kiệt Graduation Ceremony</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">Tổng Cộng</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="yesCount">0</div>
+                <div class="stat-label">Sẽ Tham Gia</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="noCount">0</div>
+                <div class="stat-label">Không Tham Gia</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="downloadJSON()">
+                <i class="fas fa-file-json"></i> Tải JSON
+            </button>
+            <button onclick="exportToCSV()">
+                <i class="fas fa-download"></i> Xuất CSV
+            </button>
+            <button class="clear-btn" onclick="clearAllData()">
+                <i class="fas fa-trash"></i> Xóa Tất Cả
+            </button>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">#</th>
+                        <th>Họ và Tên</th>
+                        <th>Email</th>
+                        <th>Xác Nhận</th>
+                        <th>Ghi Chú</th>
+                        <th>Thời Gian</th>
+                        <th style="width: 60px;">Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr class="no-data">
+                        <td colspan="7">Không có dữ liệu</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function loadResponses() {
+            const responses = JSON.parse(localStorage.getItem('rsvpResponses') || '[]');
+            const tbody = document.getElementById('tableBody');
+            const totalCount = document.getElementById('totalCount');
+            const yesCount = document.getElementById('yesCount');
+            const noCount = document.getElementById('noCount');
+
+            // Update stats
+            totalCount.textContent = responses.length;
+            yesCount.textContent = responses.filter(r => r.attendance.includes('như vậy')).length;
+            noCount.textContent = responses.filter(r => r.attendance.includes('không')).length;
+
+            // Clear table
+            tbody.innerHTML = '';
+
+            if (responses.length === 0) {
+                tbody.innerHTML = '<tr class="no-data"><td colspan="7">Không có dữ liệu</td></tr>';
+                return;
+            }
+
+            // Populate table
+            responses.forEach((response, index) => {
+                const isYes = response.attendance.includes('như vậy');
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${response.name}</td>
+                    <td>${response.email}</td>
+                    <td>
+                        <span class="${isYes ? 'status-yes' : 'status-no'}">
+                            ${isYes ? '✅ Có' : '❌ Không'}
+                        </span>
+                    </td>
+                    <td>${response.message || '(Không có ghi chú)'}</td>
+                    <td style="font-size: 12px;">${response.timestamp}</td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteResponse(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function deleteResponse(index) {
+            if (confirm('Xóa xác nhận này?')) {
+                let responses = JSON.parse(localStorage.getItem('rsvpResponses') || '[]');
+                responses.splice(index, 1);
+                localStorage.setItem('rsvpResponses', JSON.stringify(responses));
+                loadResponses();
+            }
+        }
+
+        function downloadJSON() {
+            const responses = JSON.parse(localStorage.getItem('rsvpResponses') || '[]');
+            
+            if (responses.length === 0) {
+                alert('Không có dữ liệu để tải.');
+                return;
+            }
+
+            // Create JSON file
+            const jsonContent = JSON.stringify(responses, null, 2);
+            const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `rsvp_responses_${new Date().toISOString().split('T')[0]}.json`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`✅ Downloaded ${responses.length} responses as JSON!`);
+        }
+
+        function clearAllData() {
+            if (confirm('Bạn chắc chắn muốn xóa tất cả dữ liệu? Hành động này không thể hoàn tác.')) {
+                if (confirm('⚠️ Lần cuối cùng? Tất cả dữ liệu sẽ bị xóa.')) {
+                    localStorage.removeItem('rsvpResponses');
+                    loadResponses();
+                    alert('Tất cả dữ liệu đã bị xóa.');
+                }
+            }
+        }
+
+        function exportToCSV() {
+            const responses = JSON.parse(localStorage.getItem('rsvpResponses') || '[]');
+            
+            if (responses.length === 0) {
+                alert('Không có dữ liệu để xuất.');
+                return;
+            }
+
+            // Create CSV header
+            const headers = ['STT', 'Họ và Tên', 'Email', 'Xác Nhận', 'Ghi Chú', 'Thời Gian'];
+            const csv = [headers.join(',')];
+
+            // Add data rows
+            responses.forEach((response, index) => {
+                const row = [
+                    index + 1,
+                    `"${response.name}"`,
+                    response.email,
+                    response.attendance.includes('như vậy') ? 'Có' : 'Không',
+                    `"${response.message || ''}"`,
+                    response.timestamp
+                ];
+                csv.push(row.join(','));
+            });
+
+            // Create blob and download
+            const csvContent = csv.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `rsvp-responses-${new Date().getTime()}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Load responses on page load
+        loadResponses();
+
+        // Refresh every 5 seconds
+        setInterval(loadResponses, 5000);
+    </script>
+</body>
+</html>

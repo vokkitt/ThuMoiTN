@@ -24,11 +24,14 @@ Trang web chính thức cho Lễ Tốt Nghiệp Khắc Kiệt
 
 ```
 ThuMoiTN/
-├── index.html        # HTML structure
-├── style.css         # Styling & animations
-├── script.js         # JavaScript functionality
-├── hcmue.webp        # Event venue image
-└── README.md         # This file
+├── index.html              # Trang chính
+├── admin.html              # Admin dashboard xem RSVP responses
+├── style.css               # CSS styling
+├── script.js               # JavaScript functionality
+├── hcmue.webp              # Hình ảnh sự kiện
+├── rsvp_responses.json     # JSON file lưu responses (auto-generate)
+├── RSVP_STATS.txt          # Hướng dẫn thống kê
+└── README.md               # File này
 ```
 
 ## 🎨 Công Nghệ Sử Dụng
@@ -66,6 +69,40 @@ Form hiện đang sử dụng Formspree.io. Để hoạt động:
 ```html
 action="https://formspree.io/f/YOUR_ENDPOINT_ID"
 ```
+
+## 📊 Admin Dashboard - Xem RSVP Responses
+
+### Truy cập:
+```
+Mở: admin.html
+URL: file:///path/to/admin.html
+```
+
+### Tính năng:
+✅ Thống kê: Tổng cộng, sẽ tham gia, không tham gia  
+✅ Bảng chi tiết tất cả responses  
+✅ Download JSON để push lên Git  
+✅ Export CSV để dùng Excel  
+✅ Xóa individual hoặc tất cả responses  
+✅ Auto-refresh mỗi 5 giây  
+
+### Download dữ liệu:
+```bash
+# Từ admin.html click:
+- "Tải JSON" → rsvp_responses_YYYY-MM-DD.json
+- "Xuất CSV" → rsvp-responses-TIMESTAMP.csv
+
+# Hoặc từ Console:
+getSavedRSVPs()
+```
+
+### Chia sẻ kết quả:
+1. Download JSON từ admin dashboard
+2. Commit lên Git: `git add rsvp_responses.json`
+3. Push: `git push origin main`
+4. Share link GitHub cho khách mời xem
+
+👉 **Xem chi tiết:** [RSVP_STATS.txt](RSVP_STATS.txt)
 
 ## 🎯 Tính Năng Khác
 
